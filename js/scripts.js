@@ -19,7 +19,7 @@ Player.prototype.game = function(number) {
       } else {
 
         } //close inside if
-      } else {
+      } else if (objArray[0].playerTurn === objArray[1].playerTurn){
 
       } //close outside if
     } //close prototype
