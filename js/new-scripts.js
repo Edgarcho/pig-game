@@ -3,28 +3,28 @@ var computerTotal = 0;
 var turn = 1;
 
 function computer(roll) {
-  if (turn % 2 === 0 && computerScore.length !== 2) {
-    var roll = Math.floor(Math.random() * 6+1 );
-    console.log(roll);
-      if (roll === 1) {
-        computerScore.length = 0;
+  //debugger;
+  while (computerScore.length <= 2 && turn % 2 === 0) {
+
+      var roll = Math.floor(Math.random() * 6+1 );
+      console.log(roll);
+        if (roll === 1 && computerScore.length < 2) {
+          computerScore.length = 0;
+          turn = turn + 1;
+        } else if (roll > 1 && computerScore.length < 2) {
+          computerScore.push(roll);
+          console.log(computerScore);
+        } else {
+        var compSum = 0;
+
+        for (i=0 ; i<=computerScore.length - 1; i++) {
+          compSum = compSum + computerScore[i];
+        }
+        computerTotal = computerTotal + compSum;
         turn = turn + 1;
-      } else if (roll > 1) {
-        computerScore.push(roll);
-        console.log(computerScore);
-      } else {
-
-      }
-    } else if (computerScore.length === 2) {
-      var compSum = 0;
-
-      for (i=0 ; i<=computerScore.length - 1; i++) {
-        compSum = compSum + computerScore[i];
-      }
-      computerTotal = compSum;
-      turn = turn + 1;
-  } else {
-
+        computerScore.length = 0;
+        break
+    }
   }
 }
 
@@ -36,6 +36,7 @@ function Player(name) {
 }
 
 Player.prototype.game = function(number) {
+  //debugger;
   if (turn % 2 !== 0) {
     var roll = Math.floor(Math.random() * 6+1 );
     console.log(roll);
@@ -57,7 +58,8 @@ Player.prototype.addScore = function (numbers) {
   for (i=0 ; i<=this.playerScore.length - 1; i++) {
     sum = sum + this.playerScore[i];
   }
-  this.playerTotal = sum;
+  this.playerTotal = this.playerTotal + sum;
+  this.playerScore.length = 0;
   turn = turn + 1;
 }
 
@@ -72,11 +74,15 @@ $(document).ready(function(){
   $("#formOne").submit(function(event){
     event.preventDefault();
     newPlayerOne.game();
+    $(".player-rolls").text(newPlayerOne.playerScore);
     computer();
+    $(".computer").text(" " + computerTotal);
+
   });
   $("#hold").click(function(event) {
     newPlayerOne.addScore();
     computer();
-    console.log(newPlayerOne.playerTotal);
+    $(".first-player").text(" " + newPlayerOne.playerTotal);
+    $(".computer").text(" " + computerTotal);
   });
 });

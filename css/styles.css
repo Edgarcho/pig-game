@@ -1,3 +1,11 @@
-#show-result{
+/*#show-result{
   display: none;
+}*/
+
+.first-player {
+  color: red;
+}
+
+.computer {
+  color: blue;
 }
