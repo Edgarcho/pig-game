@@ -12,8 +12,8 @@ A website created with JavaScript and HTML where a user can play a game of Pig D
 ### Specs
 | Spec | Input | Output |
 | :-------------     | :------------- | :------------- |
-| Generates a random number between 1-6 | "roll" | 3 |
-| Can add two numbers | [1, 2] | 3 |
+| Generates a random number between 1-6 | ? | 3 |
+| Can add numbers | [1, 2, 3] | 6 |
 
 
 ## Setup/Installation Requirements

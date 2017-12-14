@@ -1,5 +1,3 @@
-var objArray = [];
-
 function Player(name) {
   this.playerName = name;
   this.playerTotal = 0;
